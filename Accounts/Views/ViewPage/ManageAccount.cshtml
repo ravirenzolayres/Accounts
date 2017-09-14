@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<style>
+    .activ {
+        z-index: 3;
+        color: #ffffff;
+        background-color: #158cba;
+        border-color: #127ba3;
+        cursor: default;
+        width: 500px;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    #action {
+        text-align: center;
+        width: 250px;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+
+<script src="~/Scripts/Angular/Service/ViewPageService.js"></script>
+<script src="~/Scripts/Angular/Controller/ViewPageController.js"></script>
+<h2> User List</h2>
+
+<div ng-app="myApp" ng-controller="ViewPageController as model" ng-init="model.initialize()">
+
+    <button ng-click="model.showAddModal()" type="button" class="btn btn-primary btn-sm pull-right"><i class="glyphicon glyphicon-plus"></i> Add</button>
+    <br /><br />
+    <div class="container">
+        <table class="table table-bordered" id="tableid">
+            <thead>
+                <tr class="active">
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Firstname</th>
+
+                    @*<th>Lastname</th>
+                      <th>Middlename</th>
+                      <th>Department</th>
+                      <th>Contact</th>
+                      <th>Email</th>*@
+
+                    <th>Roles</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="account in model.accounts" ng-init="model.updateFirstname(account)">
+                    <td>
+                        <p align="center">
+                            <span ng-bind="account.UserID"></span>
+                    </td>
+                    <td>
+                        <p align="center">
+                            <span ng-bind="account.Username"></span>
+                    </td>
+                    <td>
+                        <p align="center">
+                            <span ng-bind="account.Firstname"></span>
+
+                    <td>
+                        <p ng-repeat="role in account.Roles" align="center">
+                            <span ng-if="role.RoleStatus" ng-bind="role.RoleName"></span>
+                        </p>
+                    </td>
+                    
+
+                    <td id="action">
+                        <button ng-click="model.showEditModal(account)" class="edit btn btn-info btn-sm"><i class="glyphicon glyphicon-edit"></i> Edit</button>
+                        <button ng-click="model.changeStatus(account.UserID)" ng-if="account.Status == 1" class="edit btn btn-warning btn-sm"><i class="glyphicon glyphicon-ban-circle"></i> Block</button>
+                        <button ng-click="model.changeStatus(account.UserID)" ng-if="account.Status == 0" class="edit btn btn-warning btn-sm"><i class="glyphicon glyphicon-ban-circle"></i> Unblock</button>
+                        <button ng-click="model.deletefunction(account.UserID)" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+                    </td>
+            </tbody>
+        </table>
+
+       @*Html.Partial("~/Views/Shared/PaginationView.cshtml")*@
+    </div>
+
+    <!-- Create Modal -->
+    <form id="myForm" name="myForm">
+        <div id="addModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" ng-click="model.closefunction()">&times;</button>
+                        <h4 class="modal-title">Register</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Employee ID: </label>
+                        {{model.employeeId}}
+
+                        <select name="repeatSelect" id="repeatSelect" ng-model="model.user.EmployeeId">
+                            <option ng-repeat="employee in model.employees" value="{{employee.EmployeeId}}">{{employee.FirstName}}</option>
+                        </select>                       
+
+                        <input type="text" name="username" placeholder="Username" ng-model="model.user.username" class="form-control" required />
+                        <input type="text" name="firstname" placeholder="Firstname" ng-model="model.user.firstname" class="form-control" required />
+
+
+                        <div class="checkbox">
+                            <label ng-repeat="role in model.roles">
+                                <input type="checkbox" name="role[]" ng-model="role.RoleStatus" value={{role.RoleID}} ng-change="checkedBox()"> <span ng-bind="role.RoleName"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="model.closefunction()">Close</button>
+                        <button class="btn btn-primary" ng-click="model.submitUser()" @*ng-disabled="!myForm.username.$valid || !enableButton"*@>Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--Edit modal-->
+    <ng-form id="editForm" name="editForm">
+        <div id="editModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" ng-click="model.closefunction()">&times;</button>
+                        <h4 class="modal-title">Edit</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Employee ID: </label>
+                        {{model.employee}}
+
+                        <select name="repeatSelect" id="repeatSelect" ng-model="model.account.Employee"
+                                ng-options="employee.FirstName for employee in model.employees track by employee.EmployeeId"></select>
+
+                        <input type="text" name="name" placeholder="Username" ng-model="model.account.Username" class="form-control" required />
+ 
+                        <div class="checkbox">
+                            <label ng-repeat="role in model.account.Roles">
+                                <input type="checkbox" name="role[]" ng-model="role.RoleStatus" ng-checked={{role.RoleStatus}} ng-change="checkedBox(account.Roles)" /> <span ng-bind="role.RoleName"></span> &nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="model.closefunction()">Close</button>
+                        <button class="btn btn-primary" ng-click="model.editUser()" @*ng-disabled="!editForm.username.$valid || !enableButton*@>Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ng-form>
+</div>
+
+
+
