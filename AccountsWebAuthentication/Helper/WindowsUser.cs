@@ -21,7 +21,7 @@ namespace AccountsWebAuthentication.Helper
             {
                 _iFUser = new FUser();
                 var user = _iFUser.ReadUser(Username);
-                int UserID = user?.UserID ?? 0;
+                int UserID = user?.UserId ?? 0;
                 return UserID;
             }
         }

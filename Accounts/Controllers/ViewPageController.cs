@@ -73,7 +73,7 @@ namespace Accounts.Controllers
             try
             {            
                 user = _iFUser.Create(user);
-                _iFUserRole.Create(roles, user.UserID);
+                _iFUserRole.Create(roles, user.UserId);
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace Accounts.Controllers
             {
                 _iFUser.Update(user);
 
-                _iFUserRole.Update(user.Roles, user.UserID);
+                _iFUserRole.Update(user.Roles, user.UserId);
             }
             catch (Exception ex)
             {
@@ -116,7 +116,7 @@ namespace Accounts.Controllers
             {
                 User user = new User
                 {
-                    UserID = userId
+                    UserId = userId
                 };
                 _iFUser.Delete(user);
                 return Json(LoadPageData());

@@ -3,7 +3,7 @@
     public class Role
     {
         private bool? mPreviousRoleStatus { get; set; }
-        public int RoleID { get; set; }
+        public int RoleId { get; set; }
         public string RoleName { get; set; }
         public bool RoleStatus { get; set; }
         public bool PreviousRoleStatus

@@ -28,7 +28,7 @@ namespace AccountsFunction
             var userRoles = roles.Where(a => a.RoleStatus)
                 .Select(a => new EUserRole
                 {
-                    RoleId = a.RoleID,
+                    RoleId = a.RoleId,
                     UserId = userId
                 }).ToList();
             _iDUserRole.Create(userRoles);
@@ -45,7 +45,7 @@ namespace AccountsFunction
             var newUserRoles = roles.Where(a => a.RoleStatus && a.PreviousRoleStatus == false)
                 .Select(a => new EUserRole
                 {
-                    RoleId = a.RoleID,
+                    RoleId = a.RoleId,
                     UserId = userId
                 }).ToList();
 
@@ -55,7 +55,7 @@ namespace AccountsFunction
             var oldUserRoles = roles.Where(a => a.RoleStatus == false && a.PreviousRoleStatus)
                 .Select(a => new EUserRole
                 {
-                    RoleId = a.RoleID,
+                    RoleId = a.RoleId,
                     UserId = userId
                 }).ToList();
 

@@ -30,7 +30,7 @@ namespace AccountsFunction
             var eRoles = _iDRole.Read<ERole>(a => true, "RoleName");
             var roles = eRoles.Select(a => new Role
             {
-                RoleID = a.RoleID,
+                RoleId = a.RoleId,
                 RoleName = a.RoleName
             });
 
@@ -42,7 +42,7 @@ namespace AccountsFunction
             var eRoles = _iDRole.ReadRoles(username);
             var roles = eRoles.Select(a => new Role
             {
-                RoleID = a.RoleID,
+                RoleId = a.RoleId,
                 RoleName = a.RoleName
             });
 

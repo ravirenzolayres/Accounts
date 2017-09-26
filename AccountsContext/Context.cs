@@ -5,7 +5,7 @@ namespace AccountsContext
 {
     public class Context : DbContext
     {
-        public Context() : base("AccountConnectionString")
+        public Context() : base("Account")
         {
             Database.SetInitializer(new DBInitializer());
 

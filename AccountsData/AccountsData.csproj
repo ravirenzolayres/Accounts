@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AccountsContext">
-      <HintPath>..\..\..\DLL\AccountsContext.dll</HintPath>
-    </Reference>
     <Reference Include="BaseData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\DLL\BaseData.dll</HintPath>
     </Reference>
@@ -62,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AccountsContext\AccountsContext.csproj">
+      <Project>{0b120a4b-ae56-4f8c-a7b5-fc3f5fa05872}</Project>
+      <Name>AccountsContext</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AccountsEntity\AccountsEntity.csproj">
       <Project>{973915e1-0504-44ea-bdb8-7458d08e576a}</Project>
       <Name>AccountsEntity</Name>

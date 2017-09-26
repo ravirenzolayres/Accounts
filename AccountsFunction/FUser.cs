@@ -58,7 +58,7 @@ namespace AccountsFunction
             var eRoles = _iDRoles.List<ERole>(a => true);
             return eUsers.Select(a => new User
             {
-                UserID = a.UserID,
+                UserId = a.UserId,
                 Username = a.Username,
                 Firstname = a.Firstname,
                 EmployeeId = a.EmployeeId,
@@ -66,9 +66,9 @@ namespace AccountsFunction
                 Roles = eRoles.Select(b =>
                     new Role
                     {
-                        RoleID = b.RoleID,
+                        RoleId = b.RoleId,
                         RoleName = b.RoleName,
-                        RoleStatus = a.UserRole.Any(c => c.RoleId == b.RoleID)
+                        RoleStatus = a.UserRole.Any(c => c.RoleId == b.RoleId)
                     }).ToList()
             }).ToList();
         }
@@ -84,7 +84,7 @@ namespace AccountsFunction
 
         public void ChangeStatus(int userId)
         {
-            var eUser = _iDUser.Read<EUser>(a => a.UserID == userId);
+            var eUser = _iDUser.Read<EUser>(a => a.UserId == userId);
             eUser.Status = !eUser.Status;
             _iDUser.Update(eUser);
         }
