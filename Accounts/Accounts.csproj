@@ -23,6 +23,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -300,14 +301,6 @@
     <ProjectReference Include="..\AccountsContext\AccountsContext.csproj">
       <Project>{0b120a4b-ae56-4f8c-a7b5-fc3f5fa05872}</Project>
       <Name>AccountsContext</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AccountsData\AccountsData.csproj">
-      <Project>{72444254-f169-48f6-8144-c8c81c22551a}</Project>
-      <Name>AccountsData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AccountsEntity\AccountsEntity.csproj">
-      <Project>{973915e1-0504-44ea-bdb8-7458d08e576a}</Project>
-      <Name>AccountsEntity</Name>
     </ProjectReference>
     <ProjectReference Include="..\AccountsFunction\AccountsFunction.csproj">
       <Project>{9ac7502f-3273-4cf4-bd9d-f4a76e5f8715}</Project>

@@ -9,11 +9,9 @@ namespace AccountsEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
+        public int UserRoleId { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
-
         [ForeignKey("Role")]
         public int RoleId { get; set; }
 

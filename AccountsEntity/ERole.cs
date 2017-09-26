@@ -11,7 +11,7 @@ namespace AccountsEntity
         
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int RoleID { get; set; }
+        public int RoleId { get; set; }
         [StringLength(20)]
         public string RoleName { get; set; }
 
