@@ -6,22 +6,21 @@ namespace AccountsFunction
     public interface IFUser
     {
         #region Create
-        User Create(User user);
+        User Create(int createdBy, User user);
         #endregion
 
         #region Read
-        bool IsMethodAccessible(string Username, List<string> AllowedRoles);
-        User ReadUser(string Username);
-        List<User> ReadUsers();
+        bool IsMethodAccessible(string username, List<string> allowedRoles);
+        User Read(string username);
+        List<User> Read();
         #endregion
 
         #region Update
-        User Update(User user);
-        void ChangeStatus(int userId);
+        User Update(int updatedBy, User user);
         #endregion
 
         #region Delete
-        void Delete(User user);
+        void Delete(int userId);
         #endregion
 
         #region Other Function

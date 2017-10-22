@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AccountsFunction
 {
-    public class FRole : FAccountBase, IFRole
+    public class FRole : IFRole
     {
         private IDRole _iDRole;
 
@@ -14,8 +14,7 @@ namespace AccountsFunction
         {
             _iDRole = iDRoles;
         }
-
-        //Remove this when injector is implemented
+        
         public FRole()
         {
             _iDRole = new DRole();
@@ -25,28 +24,16 @@ namespace AccountsFunction
         #endregion
 
         #region Read
-        public List<Role> ReadRoles()
+        public List<Role> Read(string sortBy)
         {
-            var eRoles = _iDRole.Read<ERole>(a => true, "RoleName");
-            var roles = eRoles.Select(a => new Role
-            {
-                RoleId = a.RoleId,
-                RoleName = a.RoleName
-            });
-
-            return roles.ToList();
+            var eRoles = _iDRole.Read<ERole>(a => true, sortBy);
+            return Roles(eRoles);
         }
 
-        public List<Role> ReadRoles(string username)
+        public List<Role> ReadRoles(int userId, string sortBy)
         {
-            var eRoles = _iDRole.ReadRoles(username);
-            var roles = eRoles.Select(a => new Role
-            {
-                RoleId = a.RoleId,
-                RoleName = a.RoleName
-            });
-
-            return roles.ToList();
+            var eRoles = _iDRole.Read<ERole>(a => a.UserRoles.Any(b => b.User.UserId == userId), sortBy);
+            return Roles(eRoles);
         }
         #endregion
 
@@ -59,7 +46,20 @@ namespace AccountsFunction
         #endregion
 
         #region Other Function
+        private List<Role> Roles(List<ERole> eRoles)
+        {
+            return eRoles.Select(a => new Role
+            {
+                CreatedDate = a.CreatedDate,
+                UpdatedDate = a.UpdatedDate,
 
+                CreatedBy = a.CreatedBy,
+                RoleId = a.RoleId,
+                UpdatedBy = a.UpdatedBy,
+
+                Name = a.Name
+            }).ToList();
+        }
         #endregion
 
     }

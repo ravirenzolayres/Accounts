@@ -8,13 +8,13 @@ namespace AccountsEntity
     [Table("Role")]
     public class ERole : EBase
     {
-        
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoleId { get; set; }
-        [StringLength(20)]
-        public string RoleName { get; set; }
 
-        public ICollection<EUserRole> UserRole { get; set; }
+        [StringLength(20)]
+        public string Name { get; set; }
+
+        public ICollection<EUserRole> UserRoles { get; set; }
     }
 }

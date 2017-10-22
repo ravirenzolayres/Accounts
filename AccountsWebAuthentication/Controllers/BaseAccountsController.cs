@@ -2,13 +2,13 @@
 using AccountsFunction;
 using AccountsWebAuthentication.Helper;
 
-namespace Accounts.Controllers
+namespace AccountsWebAuthentication.Controllers
 {
-    public class BaseController : Controller
+    public class BaseAccountsController : Controller
     {
         private IFUser _iFUser;
 
-        public BaseController()
+        public BaseAccountsController()
         {
             _iFUser = new FUser();
         }

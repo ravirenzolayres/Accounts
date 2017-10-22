@@ -1,28 +1,14 @@
-﻿namespace AccountsModel
+﻿using BaseModel;
+using System.Collections.Generic;
+
+namespace AccountsModel
 {
-    public class Role
+    public class Role: Base
     {
-        private bool? mPreviousRoleStatus { get; set; }
         public int RoleId { get; set; }
-        public string RoleName { get; set; }
-        public bool RoleStatus { get; set; }
-        public bool PreviousRoleStatus
-        {
-            get
-            {
-                if (mPreviousRoleStatus.HasValue)
-                {
-                    return mPreviousRoleStatus.Value;
-                }
-                else
-                {
-                    return RoleStatus;
-                }
-            }
-            set
-            {
-                mPreviousRoleStatus = value;
-            }
-        }
+        
+        public string Name { get; set; }
+
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

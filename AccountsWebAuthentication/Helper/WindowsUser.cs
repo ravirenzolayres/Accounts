@@ -15,14 +15,14 @@ namespace AccountsWebAuthentication.Helper
             return _iFUser.IsMethodAccessible(Username, userRoles.ToList()); ;
         }
 
-        public static int UserID
+        public static int UserId
         {
             get
             {
                 _iFUser = new FUser();
-                var user = _iFUser.ReadUser(Username);
-                int UserID = user?.UserId ?? 0;
-                return UserID;
+                var user = _iFUser.Read(Username);
+                int UserId = user?.UserId ?? 0;
+                return UserId;
             }
         }
 
