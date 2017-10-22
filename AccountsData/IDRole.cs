@@ -6,6 +6,5 @@ namespace AccountsData
 {
     public interface IDRole : IDBase
     {
-        List<ERole> ReadRoles(string username);
     }
 }

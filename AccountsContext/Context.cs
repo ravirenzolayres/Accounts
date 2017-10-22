@@ -7,7 +7,6 @@ namespace AccountsContext
     {
         public Context() : base("Account")
         {
-            Database.SetInitializer(new DBInitializer());
 
             if (Database.Exists())
             {
@@ -25,6 +24,7 @@ namespace AccountsContext
             {
             }
         }
+
         public DbSet<EUser> Users { get; set; }
         public DbSet<ERole> Roles { get; set; }
         public DbSet<EUserRole> UserRoles { get; set; }

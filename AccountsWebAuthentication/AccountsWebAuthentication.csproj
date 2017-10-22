@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseAccountsController.cs" />
     <Compile Include="Helper\CustomAuthorizeAttribute.cs" />
     <Compile Include="Helper\WindowsUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

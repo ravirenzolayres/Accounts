@@ -1,105 +1,135 @@
 ﻿using AccountsData;
 using AccountsEntity;
 using AccountsModel;
-using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AccountsFunction
 {
-    public class FUser : FAccountBase, IFUser
+    public class FUser : IFUser
     {
-        private IDRole _iDRoles;
         private IDUser _iDUser;
 
-        public FUser(IDRole iDRole, IDUser iDUser)
+        public FUser(IDUser iDUser)
         {
-            _iDRoles = iDRole;
             _iDUser = iDUser;
         }
 
         public FUser()
         {
-            _iDRoles = new DRole();
             _iDUser = new DUser();
         }
 
         #region Create
-        public User Create(User user)
+        public User Create(int createdBy, User user)
         {
 
-            var eUser = Mapper.Map<EUser>(user);
+            var eUser = EUser(user);
+            eUser.CreatedDate = DateTime.Now;
+            eUser.CreatedBy = createdBy;
             eUser = _iDUser.Insert(eUser);
-            user = Mapper.Map<User>(eUser);
-            return (user);
+            return User(eUser);
         }
         #endregion
 
         #region Read
-        public bool IsMethodAccessible(string Username, List<string> AllowedRoles)
+        public bool IsMethodAccessible(string username, List<string> allowedRoles)
         {
-            if (AllowedRoles.Count == 0)
+            if (allowedRoles.Count == 0)
             {
-                return _iDUser.IsUserExist(Username);
+                return _iDUser.Exists<EUser>(a => a.Username == username && a.IsActive);
             }
             else
             {
-                return _iDUser.IsMethodAccessible(Username, AllowedRoles);
+                return _iDUser.Exists<EUser>(a => a.Username == username && a.IsActive && a.UserRoles.Any(b => allowedRoles.Contains(b.Role.Name)));
             }
         }
-        public User ReadUser(string Username)
+
+        public User Read(string username)
         {
-            var eUser = _iDUser.Read<EUser>(a => a.Username == Username);
-            return Mapper.Map<User>(eUser);
+            var eUser = _iDUser.Read<EUser>(a => a.Username == username);
+            return User(eUser);
         }
-        public List<User> ReadUsers()
+        public List<User> Read()
         {
-            var eUsers = _iDUser.ReadUsers();
-            var eRoles = _iDRoles.List<ERole>(a => true);
-            return eUsers.Select(a => new User
-            {
-                UserId = a.UserId,
-                Username = a.Username,
-                Firstname = a.Firstname,
-                EmployeeId = a.EmployeeId,
-                Status = a.Status,
-                Roles = eRoles.Select(b =>
-                    new Role
-                    {
-                        RoleId = b.RoleId,
-                        RoleName = b.RoleName,
-                        RoleStatus = a.UserRole.Any(c => c.RoleId == b.RoleId)
-                    }).ToList()
-            }).ToList();
+            var eUsers = _iDUser.Read<EUser>(a => true, "Username");
+            return Users(eUsers);
         }
         #endregion
 
         #region Update
-        public User Update(User user)
+        public User Update(int updatedBy, User user)
         {
-            var eUser = Mapper.Map<EUser>(user);
+            var eUser = EUser(user);
+            eUser.UpdatedDate = DateTime.Now;
+            eUser.UpdatedBy = updatedBy;
             eUser = _iDUser.Update(eUser);
-            return Mapper.Map<User>(eUser);
-        }
-
-        public void ChangeStatus(int userId)
-        {
-            var eUser = _iDUser.Read<EUser>(a => a.UserId == userId);
-            eUser.Status = !eUser.Status;
-            _iDUser.Update(eUser);
+            return User(eUser);
         }
         #endregion
 
         #region Delete
-        public void Delete(User user)
+        public void Delete(int userId)
         {
-            var eUser = Mapper.Map<EUser>(user);
-            _iDUser.Delete(eUser);
+            _iDUser.Delete<EUser>(a => a.UserId == userId);
         }
         #endregion
 
         #region Other Function
+        private EUser EUser(User user)
+        {
+            return new EUser
+            {
+                IsActive = user.IsActive,
+                
+                CreatedDate = user.CreatedDate,
+                UpdatedDate = user.UpdatedDate,
 
+                CreatedBy = user.CreatedBy,
+                EmployeeId = user.EmployeeId,
+                UpdatedBy = user.UpdatedBy,
+                UserId = user.UserId,
+
+                Username = user.Username
+            };
+        }
+
+        private User User(EUser eUser)
+        {
+            return new User
+            {
+                IsActive = eUser.IsActive,
+
+                CreatedDate = eUser.CreatedDate,
+                UpdatedDate = eUser.UpdatedDate,
+
+                CreatedBy = eUser.CreatedBy,
+                EmployeeId = eUser.EmployeeId,
+                UpdatedBy = eUser.UpdatedBy,
+                UserId = eUser.UserId,
+
+                Username = eUser.Username
+            };
+        }
+
+        private List<User> Users(List<EUser> eUsers)
+        {
+            return eUsers.Select(a => new User
+            {
+                IsActive = a.IsActive,
+
+                CreatedDate = a.CreatedDate,
+                UpdatedDate = a.UpdatedDate,
+
+                CreatedBy = a.CreatedBy,
+                EmployeeId = a.EmployeeId,
+                UpdatedBy = a.UpdatedBy,
+                UserId = a.UserId,
+
+                Username = a.Username
+            }).ToList();
+        }
         #endregion
     }
 }

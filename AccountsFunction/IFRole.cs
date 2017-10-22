@@ -11,8 +11,8 @@ namespace AccountsFunction
         #endregion
 
         #region Read
-        List<Role> ReadRoles();
-        List<Role> ReadRoles(string username);
+        List<Role> Read(string sortBy);
+        List<Role> ReadRoles(int userId, string sortBy);
         #endregion
 
         #region Update
