@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounts", "Accounts\Accounts.csproj", "{78C119E1-C705-4BEC-A483-9ABE697A67E1}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsModel", "AccountsModel\AccountsModel.csproj", "{20D9761C-FF97-4B0C-BF60-C0ACD804A40C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsWebAuthentication", "AccountsWebAuthentication\AccountsWebAuthentication.csproj", "{671F22E7-7534-4523-85FE-24E175A1A65E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsWeb", "AccountsWeb\AccountsWeb.csproj", "{9EBF2318-FC3F-40BF-861D-650AEB19F3DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,8 +53,15 @@ Global
 		{671F22E7-7534-4523-85FE-24E175A1A65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{671F22E7-7534-4523-85FE-24E175A1A65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{671F22E7-7534-4523-85FE-24E175A1A65E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EBF2318-FC3F-40BF-861D-650AEB19F3DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EBF2318-FC3F-40BF-861D-650AEB19F3DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EBF2318-FC3F-40BF-861D-650AEB19F3DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EBF2318-FC3F-40BF-861D-650AEB19F3DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {285B128A-ED45-408E-8314-B2228EDDE953}
 	EndGlobalSection
 EndGlobal

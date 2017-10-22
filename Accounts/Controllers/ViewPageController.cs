@@ -1,7 +1,7 @@
 ﻿using AccountsFunction;
 using AccountsModel;
 using AccountsWebAuthentication.Helper;
-using AndersonCRMFunction;
+//using AndersonCRMFunction;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -10,14 +10,14 @@ namespace Accounts.Controllers
 {
     public class ViewPageController : BaseController
     {
-        private IFEmployee _iFEmployee;
+        //private IFEmployee _iFEmployee;
         private IFRole _iFRole;
         private IFUser _iFUser;
         private IFUserRole _iFUserRole;
 
         public ViewPageController()
         {
-            _iFEmployee = new FEmployee();
+            //_iFEmployee = new FEmployee();
             _iFRole = new FRole();
             _iFUser = new FUser();
             _iFUserRole = new FUserRole();
@@ -71,7 +71,7 @@ namespace Accounts.Controllers
         public JsonResult AddUser(User user, List<Role> roles)
         {
             try
-            {            
+            {
                 user = _iFUser.Create(user);
                 _iFUserRole.Create(roles, user.UserId);
             }
@@ -125,6 +125,6 @@ namespace Accounts.Controllers
             {
                 return Json(ex.ToString());
             }
-        }      
+        }
     }  
 }
