@@ -52,79 +52,79 @@ namespace Accounts.Controllers
             return View();
         }
 
-        public JsonResult LoadRoles()
-        {
-            return Json(_iFRole.ReadRoles());
-        }
+        //public JsonResult LoadRoles()
+        //{
+        //    return Json(_iFRole.ReadRoles());
+        //}
 
-        public JsonResult ReadEmployees()
-        {
-            return Json(_iFEmployee.List());
-        }
+        //public JsonResult ReadEmployees()
+        //{
+        //    return Json(_iFEmployee.List());
+        //}
 
-        public JsonResult LoadPageData()
-        {
-            return Json(_iFUser.ReadUsers());
-        }
+        //public JsonResult LoadPageData()
+        //{
+        //    return Json(_iFUser.ReadUsers());
+        //}
 
-        [HttpPost]
-        public JsonResult AddUser(User user, List<Role> roles)
-        {
-            try
-            {
-                user = _iFUser.Create(user);
-                _iFUserRole.Create(roles, user.UserId);
-            }
-            catch (Exception ex)
-            {
-                return Json(ex.ToString());
-            }
-            return Json(string.Empty);
-        }
+        //[HttpPost]
+        //public JsonResult AddUser(User user, List<Role> roles)
+        //{
+        //    try
+        //    {
+        //        user = _iFUser.Create(user);
+        //        _iFUserRole.Create(roles, user.UserId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(ex.ToString());
+        //    }
+        //    return Json(string.Empty);
+        //}
 
-        public JsonResult EditUser(User user)
-        {
-            try
-            {
-                _iFUser.Update(user);
+        //public JsonResult EditUser(User user)
+        //{
+        //    try
+        //    {
+        //        _iFUser.Update(user);
 
-                _iFUserRole.Update(user.Roles, user.UserId);
-            }
-            catch (Exception ex)
-            {
-                return Json(ex.ToString());
-            }
-            return Json(string.Empty);
-        }
+        //        _iFUserRole.Update(user.Roles, user.UserId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(ex.ToString());
+        //    }
+        //    return Json(string.Empty);
+        //}
 
-        public JsonResult ChangeStatus(int userid)
-        {
-            try
-            {
-                _iFUser.ChangeStatus(userid);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Json(string.Empty);
-        }
+        //public JsonResult ChangeStatus(int userid)
+        //{
+        //    try
+        //    {
+        //        _iFUser.ChangeStatus(userid);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //    return Json(string.Empty);
+        //}
 
-        public JsonResult DeleteUser(int userId)
-        {
-            try
-            {
-                User user = new User
-                {
-                    UserId = userId
-                };
-                _iFUser.Delete(user);
-                return Json(LoadPageData());
-            }
-            catch (Exception ex)
-            {
-                return Json(ex.ToString());
-            }
-        }
+        //public JsonResult DeleteUser(int userId)
+        //{
+        //    try
+        //    {
+        //        User user = new User
+        //        {
+        //            UserId = userId
+        //        };
+        //        _iFUser.Delete(user);
+        //        return Json(LoadPageData());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(ex.ToString());
+        //    }
+        //}
     }  
 }

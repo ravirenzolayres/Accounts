@@ -11,6 +11,7 @@ namespace AccountsFunction
 
         #region Read
         bool IsMethodAccessible(string username, List<string> allowedRoles);
+        User Read(int userId);
         User Read(string username);
         List<User> Read();
         #endregion

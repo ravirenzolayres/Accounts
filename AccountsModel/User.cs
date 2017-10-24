@@ -12,6 +12,6 @@ namespace AccountsModel
         
         public string Username { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public List<UserRole> UserRoles { get; set; }
     }
 }
