@@ -18,6 +18,17 @@ namespace AccountsData
         #endregion
 
         #region Read
+        public List<EUser> Read()
+        {
+            using (var context = new Context())
+            {
+                return context.Users
+                    .Include(a => a.UserRoles)
+                    .Include(a => a.UserRoles.Select(b => b.Role))
+                    .OrderBy(a => a.Username)
+                    .ToList();
+            }
+        }
         #endregion
 
         #region Update

@@ -26,6 +26,10 @@ namespace AccountsFunction
         public void Create(int createdBy, int userId, List<UserRole> userRoles)
         {
             Delete(userId);
+
+            if (!userRoles?.Any() ?? true)
+                return;
+
             var eUserRoles = EUserRole(createdBy, userRoles);
             _iDUserRole.Create(eUserRoles);
         }

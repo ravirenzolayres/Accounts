@@ -46,14 +46,21 @@ namespace AccountsFunction
             }
         }
 
+        public User Read(int userId)
+        {
+            var eUser = _iDUser.Read<EUser>(a => a.UserId == userId);
+            return User(eUser);
+        }
+
         public User Read(string username)
         {
             var eUser = _iDUser.Read<EUser>(a => a.Username == username);
             return User(eUser);
         }
+
         public List<User> Read()
         {
-            var eUsers = _iDUser.Read<EUser>(a => true, "Username");
+            var eUsers = _iDUser.Read();
             return Users(eUsers);
         }
         #endregion
@@ -127,7 +134,32 @@ namespace AccountsFunction
                 UpdatedBy = a.UpdatedBy,
                 UserId = a.UserId,
 
-                Username = a.Username
+                Username = a.Username,
+
+                UserRoles = a.UserRoles.Select(b =>
+                    new UserRole
+                    {
+                        CreatedDate = b.Role.CreatedDate,
+                        UpdatedDate = b.UpdatedDate,
+
+                        CreatedBy = b.CreatedBy,
+                        RoleId = b.RoleId,
+                        UpdatedBy = b.UpdatedBy,
+                        UserRoleId = b.UserRoleId,
+                        UserId = b.UserId,
+
+                        Role = new Role
+                        {
+                            CreatedDate = b.Role.CreatedDate,
+                            UpdatedDate = b.Role.UpdatedDate,
+
+                            CreatedBy = b.Role.CreatedBy,
+                            RoleId = b.Role.RoleId,
+                            UpdatedBy = b.Role.UpdatedBy,
+
+                            Name = b.Role.Name
+                        }
+                    }).ToList()
             }).ToList();
         }
         #endregion

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using AccountsEntity;
+using System.Data.Entity;
 
 
 namespace AccountsContext
@@ -10,6 +11,11 @@ namespace AccountsContext
         }
         protected override void Seed(Context context)
         {
+            context.Roles.Add(
+                new ERole
+                {
+                    Name = "AccountAdministrator"
+                });
             base.Seed(context);
         }
     }

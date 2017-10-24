@@ -18,13 +18,6 @@ namespace AccountsContext
             }
         }
 
-        public class DBInitializer : CreateDatabaseIfNotExists<Context>
-        {
-            public DBInitializer()
-            {
-            }
-        }
-
         public DbSet<EUser> Users { get; set; }
         public DbSet<ERole> Roles { get; set; }
         public DbSet<EUserRole> UserRoles { get; set; }

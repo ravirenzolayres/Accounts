@@ -6,5 +6,8 @@ namespace AccountsData
 {
     public interface IDUser : IDBase
     {
+        #region Read
+        List<EUser> Read();
+        #endregion
     }
 }

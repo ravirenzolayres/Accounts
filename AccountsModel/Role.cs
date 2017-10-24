@@ -9,6 +9,6 @@ namespace AccountsModel
         
         public string Name { get; set; }
 
-        public ICollection<UserRole> UserRoles { get; set; }
+        public List<UserRole> UserRoles { get; set; }
     }
 }
