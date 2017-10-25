@@ -10,20 +10,37 @@
     function UserController($window, UserService) {
         var vm = this;
 
-        vm.Users;
+        vm.Employees = [];
+        vm.Users = [];
 
         vm.GoToUpdatePage = GoToUpdatePage;
         vm.Initialise = Initialise;
 
         vm.Delete = Delete;
-
-
+        
         function GoToUpdatePage(userId) {
             $window.location.href = '../User/Update/' + userId;
         } 
 
         function Initialise() {
             Read();
+        }
+
+        function ReadEmployees() {
+            EmployeeService.Read()
+                .then(function (response) {
+                    vm.Employees = response.data;
+                })
+                .catch(function (data, status) {
+                    new PNotify({
+                        title: status,
+                        text: data,
+                        type: 'error',
+                        hide: true,
+                        addclass: "stack-bottomright"
+                    });
+
+                });
         }
 
         function Read() {

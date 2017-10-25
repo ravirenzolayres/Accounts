@@ -30,7 +30,7 @@ namespace AccountsFunction
             if (!userRoles?.Any() ?? true)
                 return;
 
-            var eUserRoles = EUserRole(createdBy, userRoles);
+            var eUserRoles = EUserRole(createdBy, userId, userRoles);
             _iDUserRole.Create(eUserRoles);
         }
         #endregion
@@ -50,7 +50,7 @@ namespace AccountsFunction
         #endregion
 
         #region Other Function
-        private List<EUserRole> EUserRole(int createdBy, List<UserRole> userRoles)
+        private List<EUserRole> EUserRole(int createdBy, int userId, List<UserRole> userRoles)
         {
             return userRoles.Select(a =>
             new EUserRole
@@ -62,7 +62,7 @@ namespace AccountsFunction
                 RoleId = a.RoleId,
                 UpdatedBy = a.UpdatedBy,
                 UserRoleId = a.UserRoleId,
-                UserId = a.UserId
+                UserId = userId
             }).ToList();
         }
         #endregion

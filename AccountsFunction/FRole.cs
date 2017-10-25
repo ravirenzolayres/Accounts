@@ -30,7 +30,7 @@ namespace AccountsFunction
             return Roles(eRoles);
         }
 
-        public List<Role> ReadRoles(int userId, string sortBy)
+        public List<Role> Read(int userId, string sortBy)
         {
             var eRoles = _iDRole.Read<ERole>(a => a.UserRoles.Any(b => b.User.UserId == userId), sortBy);
             return Roles(eRoles);

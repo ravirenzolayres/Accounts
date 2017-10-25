@@ -12,7 +12,7 @@ namespace AccountsFunction
 
         #region Read
         List<Role> Read(string sortBy);
-        List<Role> ReadRoles(int userId, string sortBy);
+        List<Role> Read(int userId, string sortBy);
         #endregion
 
         #region Update
