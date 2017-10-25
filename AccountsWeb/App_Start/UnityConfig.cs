@@ -1,5 +1,7 @@
 using AccountsData;
 using AccountsFunction;
+using AndersonCRMData;
+using AndersonCRMFunction;
 using System;
 
 using Unity;
@@ -47,12 +49,14 @@ namespace AccountsWeb
             // container.RegisterType<IProductRepository, ProductRepository>();
 
             #region Data
+            container.RegisterType<IDEmployee, DEmployee>(new PerRequestLifetimeManager());
             container.RegisterType<IDRole, DRole>(new PerRequestLifetimeManager());
             container.RegisterType<IDUser, DUser>(new PerRequestLifetimeManager());
             container.RegisterType<IDUserRole, DUserRole>(new PerRequestLifetimeManager());
             #endregion
 
             #region Function
+            container.RegisterType<IFEmployee, FEmployee>(new PerRequestLifetimeManager());
             container.RegisterType<IFRole, FRole>(new PerRequestLifetimeManager());
             container.RegisterType<IFUser, FUser>(new PerRequestLifetimeManager());
             container.RegisterType<IFUserRole, FUserRole>(new PerRequestLifetimeManager());
