@@ -554,6 +554,7 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Update.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
