@@ -24,7 +24,7 @@ namespace AccountsWebAuthentication.Helper
             {
                 return _iFUser.IsMethodAccessible(currentUserlogged, AllowedRoles.ToList());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
