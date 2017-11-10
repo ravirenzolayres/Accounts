@@ -11,7 +11,7 @@
     <label for="EmployeeId">Employee</label>
     <input type="hidden" class="form-control" id="EmployeeId" name="EmployeeId" value="{{model.Employee.EmployeeId}}">
     <ui-select ng-model="model.Employee">
-        <ui-select-match placeholder="Select employee...">
+        <ui-select-match placeholder="Select employee...">  
             <span ng-bind="$select.selected.FirstName + ' ' + $select.selected.MiddleName + ' ' + $select.selected.LastName"></span>
         </ui-select-match>
         <ui-select-choices repeat="employee in (model.Employees | filter: $select.search) track by $index">

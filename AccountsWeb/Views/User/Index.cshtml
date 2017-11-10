@@ -16,7 +16,6 @@
                     <tr class="thead-inverse">
                         <th>UserId</th>
                         <th>IsActive</th>
-                        <th>EmployeeId</th>
                         <th>Username</th>
                         <th>Roles</th>
                         <th>Actions</th>
@@ -26,14 +25,24 @@
                     <tr class="clickableRow" ng-repeat="user in model.Users" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(user.UserId)">
                         <td><span ng-bind="user.UserId"></span></td>
                         <td><span ng-bind="user.IsActive"></span></td>
-                        <td><span ng-bind="user.EmployeeId"></span></td>
                         <td><span ng-bind="user.Username"></span></td>
-                        <td>
+                        <td  ng-click="$event.originalEvent.dropdown = true">
                             <ul>
                                 <li ng-repeat="userRole in user.UserRoles">
                                     <span ng-bind="userRole.Role.Name"></span>
                                 </li>
                             </ul>
+
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" ng-click="model.GoToUpdatePage(user.UserId)">Edit</a></li>
+                                    <li><a href="#" ng-click="model.Delete(user.UserId)">Delete</a></li>
+                                </ul>
+                            </div>
+
                         </td>
                         <td ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
