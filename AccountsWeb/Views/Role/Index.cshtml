@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="clickableRow" ng-repeat="role in model.Roles" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(role.roleId)" ng-init="model.UpdateRole(role)">
+                    <tr class="clickableRow" ng-repeat="role in model.Roles" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(role.RoleId)" ng-init="model.UpdateRole(role)">
                         <td>
                             <span ng-bind="role.Name"></span>
                         </td>
@@ -30,8 +30,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#" ng-click="model.GoToUpdatePage(role.roleId)">Edit</a></li>
-                                    <li><a href="#" ng-click="model.Delete(role.roleId)">Delete</a></li>
+                                    <li><a href="#" ng-click="model.GoToUpdatePage(role.RoleId)">Edit</a></li>
+                                    <li><a href="#" ng-click="model.Delete(role.RoleId)">Delete</a></li>
                                 </ul>
                             </div>
                         </td>

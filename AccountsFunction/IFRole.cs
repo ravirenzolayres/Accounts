@@ -1,7 +1,6 @@
 ﻿using AccountsModel;
 using System.Collections.Generic;
 
-
 namespace AccountsFunction
 {
     public interface IFRole
@@ -11,12 +10,14 @@ namespace AccountsFunction
         #endregion
 
         #region Read
+        Role Read(int roleId);
         List<Role> Read(string sortBy);
         List<Role> Read(int roleId, string sortBy);
+       
         #endregion
 
         #region Update
-        Role Update(int createdBy, Role role);
+        Role Update(int updatedBy, Role role);
         #endregion
 
         #region Delete

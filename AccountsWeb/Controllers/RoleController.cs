@@ -20,7 +20,6 @@ namespace AccountsWeb.Controllers
         {
             return View(new Role());
         }
-
         [HttpPost]
         public ActionResult Create(Role role)
         {
@@ -51,7 +50,7 @@ namespace AccountsWeb.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            return View(_iFRole.Read(id, "name"));
+            return View(_iFRole.Read(id));
         }
         [HttpPost]
         public ActionResult Update(Role role)
