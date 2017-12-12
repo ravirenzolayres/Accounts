@@ -22,7 +22,6 @@
         function GoToUpdatePage(userId) {
             $window.location.href = '../User/Update/' + userId;
         }
-
         function Initialise() {
             Read();
             ReadEmployees();
@@ -56,7 +55,7 @@
             UserService.Read()
                 .then(function (response) {
                     vm.Users = response.data;
-                  
+                    
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -70,9 +69,8 @@
                 });
         }
         function UpdateEmployee(user) {
-           angular.forEach(vm.Employees, function (employee) {
+            angular.forEach(vm.Employees, function (employee) {
                user.Employee = $filter('filter')(vm.Employees, { EmployeeId: user.EmployeeId })[0];
-               console.log(''+ employee);
             });
         }
 

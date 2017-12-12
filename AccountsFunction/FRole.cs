@@ -24,7 +24,6 @@ namespace AccountsFunction
         #region Create
         public Role Create(int createdBy, Role role)
         {
-
             var eRole = ERole(role);
             eRole.CreatedDate = DateTime.Now;
             eRole.CreatedBy = createdBy;
@@ -44,10 +43,9 @@ namespace AccountsFunction
             var eRoles = _iDRole.Read<ERole>(a => true, sortBy);
             return Roles(eRoles);
         }
-
-        public List<Role> Read(int roleId, string sortBy)
+        public List<Role> Read(int userId, string sortBy)
         {
-            var eRoles = _iDRole.Read<ERole>(a => a.UserRoles.Any(b => b.Role.RoleId == roleId), sortBy);
+            var eRoles = _iDRole.Read<ERole>(a => a.UserRoles.Any(b => b.User.UserId == userId), sortBy);
             return Roles(eRoles);
         }
         #endregion
