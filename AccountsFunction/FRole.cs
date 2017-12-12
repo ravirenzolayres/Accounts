@@ -32,12 +32,13 @@ namespace AccountsFunction
             return Role(eRole);
         }
         #endregion
+
+        #region Read
         public Role Read(int roleId)
         {
             var eRole = _iDRole.Read<ERole>(a => a.RoleId == roleId);
             return Role(eRole);
         }
-        #region Read
         public List<Role> Read(string sortBy)
         {
             var eRoles = _iDRole.Read<ERole>(a => true, sortBy);

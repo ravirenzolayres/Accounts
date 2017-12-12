@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace AccountsWeb.Controllers
 {
-    [CustomAuthorize(AllowedRoles = new string[] { "AccountAdministrator" })]
+    [CustomAuthorize(AllowedRoles = new string[] { "AccountAdministrator"})]
     public class RoleController : BaseController
     {
         private IFRole _iFRole;
@@ -27,6 +27,7 @@ namespace AccountsWeb.Controllers
             return RedirectToAction("Index");
         }
         #endregion
+
         #region Read
         [HttpGet]
         public ActionResult Index()

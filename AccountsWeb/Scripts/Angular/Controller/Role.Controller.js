@@ -23,18 +23,15 @@
         function Initialise(userId) {
             vm.UserId = userId;
             Read();
-            if (vm.UserId != undefined)
+            if (vm.UserId !== undefined)
             ReadAssignedRole();
         }
-
         function GoToUpdatePage(roleId) {
             $window.location.href = '../Role/Update/' + roleId;
-        } 
-
+        }
         function UpdateRole(role) {
             role.AssignedRoles = $filter('filter')(vm.AssignedRoles, { roleId: role.RoleId })[0];
         }
-
         function Read() {
             RoleService.Read()
                 .then(function (response) {
@@ -51,7 +48,6 @@
 
                 });
         }
-
         function ReadAssignedRole() {
             RoleService.ReadAssignedRole(vm.UserId)
                 .then(function (response) {

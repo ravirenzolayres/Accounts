@@ -6,7 +6,7 @@
 <div ng-controller="RoleController as model" ng-init="model.Initialise()">
     <div class="row">
         <div class="col-sm-4">
-            <a href="../Role/Create" class="btn btn-default">Create</a>
+            <a href="../Role/Create" class="btn btn-default">Create new Role</a>
         </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
                 <thead>
                     <tr class="thead-inverse">
                         <th>Role Descriptions</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +24,7 @@
                             <span ng-bind="role.Name"></span>
                         </td>
 
-                        <td ng-click="$event.originalEvent.dropdown = true">
+                        <td class="text-center" ng-click="$event.originalEvent.dropdown = true">
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                                     <span class="caret"></span>
