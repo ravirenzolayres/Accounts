@@ -30,14 +30,17 @@
             EmployeeService.Read()
                 .then(function (response) {
                     vm.Employees = response.data;
+
                     if (vm.EmployeeId)
                     {
                         UpdateEmployee();
                     }
                     else
                     {
+                        Read();
                         ReadEmployees();
                     }
+
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -55,7 +58,14 @@
             UserService.Read()
                 .then(function (response) {
                     vm.Users = response.data;
-                    
+                    //if (vm.EmployeeId)
+                    //{
+                    //    UpdateEmployee();
+                    //}
+                    //else
+                    //{
+                    //    ReadEmployees();
+                    //}
                 })
                 .catch(function (data, status) {
                     new PNotify({

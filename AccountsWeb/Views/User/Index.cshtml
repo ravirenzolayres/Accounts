@@ -25,7 +25,7 @@
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     <tr class="clickableRow" ng-repeat="user in model.Users" ng-click="$event.originalEvent.dropdown || model.GoToUpdatePage(user.UserId)" ng-init="model.UpdateEmployee(user)">
                         <td><span ng-bind="user.UserId"></span></td>
                         <td><span ng-bind="user.IsActive"></span></td>
