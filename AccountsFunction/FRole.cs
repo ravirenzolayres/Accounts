@@ -48,6 +48,11 @@ namespace AccountsFunction
             var eRoles = _iDRole.Read<ERole>(a => a.UserRoles.Any(b => b.User.UserId == userId), sortBy);
             return Roles(eRoles);
         }
+        public List<Role> Read()
+        {
+            var eRole = _iDRole.Read();
+            return Roles(eRole);
+        }
         #endregion
 
         #region Update

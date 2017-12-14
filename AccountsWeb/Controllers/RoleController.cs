@@ -35,11 +35,11 @@ namespace AccountsWeb.Controllers
             return View();
         }
 
+        [HttpPost]
         public JsonResult Read()
         {
             return Json(_iFRole.Read("Name"));
         }
-
         [HttpPost]
         public JsonResult ReadAssignedRole(int id)
         {

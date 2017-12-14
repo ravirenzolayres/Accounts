@@ -25,9 +25,10 @@ namespace AccountsData
                 return context.Roles
                     .Include(a => a.UserRoles)
                     .Include(a => a.UserRoles.Select(b => b.Role))
+                    .OrderBy(a => a.Name)
                     .ToList();
             }
-}
+        }
         #endregion
 
         #region Update
