@@ -68,7 +68,7 @@ namespace AccountsWebAuthentication.Helper
                 _iFRole = new FRole(_iDRole);
                 return _iFUser.IsMethodAccessible(currentUserlogged, AllowedRoles.ToList());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
