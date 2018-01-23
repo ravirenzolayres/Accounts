@@ -1,8 +1,6 @@
 ﻿using System.Web.Mvc;
 using AccountsFunction;
 using AccountsModel;
-using AndersonCRMFunction;
-
 using AccountsWebAuthentication.Helper;
 
 namespace AccountsWebAuthentication.Controllers
@@ -10,12 +8,10 @@ namespace AccountsWebAuthentication.Controllers
     public class BaseAccountsController : Controller
     {
         private IFUser _iFUser;
-        private IFEmployee _iFEmployee;
 
         public BaseAccountsController()
         {
             _iFUser = new FUser();
-            _iFEmployee = new FEmployee();
         }
 
         protected string Username
