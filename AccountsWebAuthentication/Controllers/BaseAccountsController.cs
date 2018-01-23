@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using AccountsFunction;
-using AndersonCRMFunction;
+using AccountsModel;
 using AccountsWebAuthentication.Helper;
 
 namespace AccountsWebAuthentication.Controllers
@@ -8,12 +8,11 @@ namespace AccountsWebAuthentication.Controllers
     public class BaseAccountsController : Controller
     {
         private IFUser _iFUser;
-        private IFEmployee _iFEmployee;
 
         public BaseAccountsController()
         {
             _iFUser = new FUser();
-            _iFEmployee = new FEmployee();
+            
         }
 
         protected string Username
@@ -23,7 +22,6 @@ namespace AccountsWebAuthentication.Controllers
                 return WindowsUser.Username;
             }
         }
-
         protected int UserId
         {
             get
@@ -38,9 +36,17 @@ namespace AccountsWebAuthentication.Controllers
         {
             get
             {
-                var employee = _iFEmployee.Read(EmployeeId);
-                int EmployeeID = employee?.EmployeeId ?? 0;
-                return EmployeeID;
+                int employeeId = CurrentUser?.EmployeeId ?? 0;
+                return employeeId;
+            }
+        }
+
+        protected User CurrentUser
+        {
+            get
+            {
+                var user = _iFUser.Read(Username);
+                return user;
             }
         }
 
