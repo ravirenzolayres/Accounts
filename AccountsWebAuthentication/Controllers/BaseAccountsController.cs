@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using AccountsFunction;
 using AccountsModel;
+using AccountsWebAuthentication.Helper;
 
 namespace AccountsWebAuthentication.Controllers
 {
@@ -13,13 +14,13 @@ namespace AccountsWebAuthentication.Controllers
             _iFUser = new FUser();
         }
 
-        //protected string Username
-        //{
-        //    get
-        //    {
-        //        return WindowsUser.Username;
-        //    }
-        //}
+        protected string Username
+        {
+            get
+            {
+                return WindowsUser.Username;
+            }
+        }
         protected int UserId
         {
             get
