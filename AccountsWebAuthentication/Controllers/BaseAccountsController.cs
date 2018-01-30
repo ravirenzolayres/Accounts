@@ -17,6 +17,14 @@ namespace AccountsWebAuthentication.Controllers
             _iFUser = new FUser();
             _iFEmployee = new FEmployee();
         }
+        protected int ManagerEmployeeId
+        {
+            get
+            {
+                int employeeId = CurrentEmployee?.EmployeeId ?? 0;
+                return employeeId;
+            }
+        }
 
         protected string Username
         {
@@ -52,14 +60,6 @@ namespace AccountsWebAuthentication.Controllers
             }
         }
 
-        protected int ManagerEmployeeId
-        {
-            get
-            {
-                int employeeId = CurrentEmployee?.ManagerEmployeeId ?? 0;
-                return employeeId;
-            }
-        }
 
         protected Employee CurrentEmployee
         {
