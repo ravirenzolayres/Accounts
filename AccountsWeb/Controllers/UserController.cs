@@ -1,6 +1,7 @@
 ﻿using AccountsFunction;
 using AccountsModel;
 using AccountsWebAuthentication.Helper;
+using System;
 using System.Web.Mvc;
 
 namespace AccountsWeb.Controllers
@@ -26,9 +27,27 @@ namespace AccountsWeb.Controllers
         [HttpPost]
         public ActionResult Create(User user)
         {
-            var createdUser = _iFUser.Create(UserId, user);
-            _iFUserRole.Create(UserId, createdUser.UserId, user.UserRoles);
-            return RedirectToAction("Index");
+
+            try
+            {
+                var createdUser = _iFUser.Create(UserId, user);
+                _iFUserRole.Create(UserId, createdUser.UserId, user.UserRoles);
+                if (ModelState.IsValid)
+                {
+                    TempData["message"] = "User has been created, successfully!";
+                }
+                return RedirectToAction("Create");
+            }
+            catch (Exception)
+            {
+                if (ModelState.IsValid)
+                {
+                    // Do your stuff
+                    TempData["message"] = "Opps! Something went wrong. Please, try again.";
+                }
+                return RedirectToAction("Create");
+
+            }
         }
         #endregion
 
