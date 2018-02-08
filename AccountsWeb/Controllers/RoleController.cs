@@ -75,9 +75,28 @@ namespace AccountsWeb.Controllers
         [HttpPost]
         public ActionResult Update(Role role)
         {
-            var createdRole = _iFRole.Update(UserId, role);
-            return RedirectToAction("Index");
+            try
+            {
+                var createdRole = _iFRole.Update(UserId, role);
+                if (ModelState.IsValid)
+                {
+                    TempData["message"] = "Role has been updated, successfully!";
+                }
+                return RedirectToAction("Create");
+            }
+            catch (Exception)
+            {
+                if (ModelState.IsValid)
+                {
+                    // Do your stuff
+                    TempData["message"] = "Opps! Something went wrong. Please, try again.";
+                }
+                return RedirectToAction("Create");
+
+            }
+
         }
+
         #endregion
 
         #region Delete

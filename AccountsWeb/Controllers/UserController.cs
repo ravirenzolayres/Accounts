@@ -74,10 +74,30 @@ namespace AccountsWeb.Controllers
         [HttpPost]
         public ActionResult Update(User user)
         {
-            var createdUser = _iFUser.Update(UserId, user);
-            _iFUserRole.Create(UserId, createdUser.UserId, user.UserRoles);
-            return RedirectToAction("Index");
+
+            try
+            {
+                var createdUser = _iFUser.Update(UserId, user);
+                _iFUserRole.Create(UserId, createdUser.UserId, user.UserRoles);
+                if (ModelState.IsValid)
+                {
+                    TempData["message"] = "User has been updated, successfully!";
+                }
+                return RedirectToAction("Create");
+            }
+            catch (Exception)
+            {
+                if (ModelState.IsValid)
+                {
+                    // Do your stuff
+                    TempData["message"] = "Opps! Something went wrong. Please, try again.";
+                }
+                return RedirectToAction("Create");
+
+            }
         }
+
+
         #endregion
 
         #region Delete
